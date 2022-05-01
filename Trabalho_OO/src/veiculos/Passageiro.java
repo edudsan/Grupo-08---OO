@@ -16,4 +16,16 @@ public class Passageiro extends Utilitario{
 	public boolean isTvBordo() {
 		return tvBordo;
 	}
+	public void setNumOcupantes(int numOcupantes) {
+		this.numOcupantes = numOcupantes;
+	}
+	public void setArCondicionado(boolean arCondicionado) {
+		this.arCondicionado = arCondicionado;
+	}
+	public void setDirecaoHidraulica(boolean direcaoHidraulica) {
+		this.direcaoHidraulica = direcaoHidraulica;
+	}
+	public void setTvBordo(boolean tvBordo) {
+		this.tvBordo = tvBordo;
+	}
 }

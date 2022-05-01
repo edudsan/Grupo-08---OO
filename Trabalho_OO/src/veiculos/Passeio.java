@@ -14,4 +14,17 @@ public class Passeio extends Veiculo{
 	public boolean isCambioAutomatico() {
 		return cambioAutomatico;
 	}
+
+	public void setArCondicionado(boolean arCondicionado) {
+		this.arCondicionado = arCondicionado;
+	}
+
+	public void setDirecaoHidraulica(boolean direcaoHidraulica) {
+		this.direcaoHidraulica = direcaoHidraulica;
+	}
+
+	public void setCambioAutomatico(boolean cambioAutomatico) {
+		this.cambioAutomatico = cambioAutomatico;
+	}
+
 }
