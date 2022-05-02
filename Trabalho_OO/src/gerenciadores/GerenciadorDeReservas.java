@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
-import pessoas.PessoaFisica;
+import pessoas.PessoaFisica;	
 
 public class GerenciadorDeReservas extends Gerenciador{
 	

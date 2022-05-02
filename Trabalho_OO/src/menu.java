@@ -8,7 +8,10 @@ import java.text.ParseException;
 public class menu extends Gerenciador{
 
 	public static void main(String args[]) throws ParseException {
-		
+		/* Acredito que todas as funções basicas do programa
+		 * CRUD: PF, PJ, Veiculos. Foram implementadas de forma satisfatória 
+		 * não conseguimos,infelizmente, implementar o relatório e o sitema de reserva como gostariamos.
+		 */
 		String strOpcao;
 		int opcao;
 		GerenciadorDeLocatarios gerenciadorDeLocatarios = new GerenciadorDeLocatarios();
