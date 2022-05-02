@@ -1,7 +1,7 @@
 package pessoas;
 
 public class PessoaFisica extends Pessoa{
-	private String cpf, estadoCivil, email;
+	private String cpf, estadoCivil;
 
 	public String getCpf() {
 		return cpf;
@@ -17,13 +17,5 @@ public class PessoaFisica extends Pessoa{
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 }

@@ -1,43 +1,48 @@
 package gerenciadores;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 
-import pessoas.Pessoa;
-import veiculos.Veiculo;
+import javax.swing.JOptionPane;
 
 public class GerenciadorDeReservas extends Gerenciador{
-	private int numReserva, diarias;
-	private Pessoa cliente;
-	private Veiculo automovel;
-	private Date dataInicio, dataFim;
-	private double seguroTerceiros, seguroVeiculo, impostoLocacao;
 	
-	public int getNumReserva() {
-		return numReserva;
+	private LinkedList<Reserva> reserva = new LinkedList<Reserva>();
+	String strData;
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+	Date data;
+	
+	public boolean reservaNormal() throws ParseException {
+		Normal reservaNormal = new Normal();
+		reservaNormal.setNumReserva(reserva.size()+1);
+		
+		strData = JOptionPane.showInputDialog("Data do início da reserva: ");
+		data = dateFormat.parse(strData);
+		reservaNormal.setDataInicio(data);
+		strData = JOptionPane.showInputDialog("Data do início da reserva: ");
+		data = dateFormat.parse(strData);
+		reservaNormal.setDataFim(data);
+		reservaNormal.setDiarias((int) (reservaNormal.getDataFim().getTime() - reservaNormal.getDataInicio().getTime()));
+		
+		
+		return false;
 	}
-	public int getDiarias() {
-		return diarias;
+	
+	public boolean reservaNormalReduzida() {
+		
+		return false;
 	}
-	public Pessoa getCliente() {
-		return cliente;
+
+	public boolean reservaEmpresarial() {
+	
+	return false;
 	}
-	public Veiculo getAutomovel() {
-		return automovel;
-	}
-	public Date getDataInicio() {
-		return dataInicio;
-	}
-	public Date getDataFim() {
-		return dataFim;
-	}
-	public double getSeguroTerceiros() {
-		return seguroTerceiros;
-	}
-	public double getSeguroVeiculo() {
-		return seguroVeiculo;
-	}
-	public double getImpostoLocacao() {
-		return impostoLocacao;
+
+	public boolean reservaMensal() {
+	
+		return false;
 	}
 	
 	public String emitirRelatorio() {
@@ -49,4 +54,5 @@ public class GerenciadorDeReservas extends Gerenciador{
 		String relatorioConsolidado = null;
 		return relatorioConsolidado;
 	}
+
 }

@@ -1,16 +1,26 @@
 package gerenciadores;
 
+import java.util.LinkedList;
+
 import pessoas.Pessoa;
 import veiculos.Veiculo;
 
 public class Gerenciador {
-	private Pessoa pessoa;
-	private Veiculo veiculo;
+	protected LinkedList<Pessoa> pessoa = new LinkedList<Pessoa>();
+	protected LinkedList<Veiculo> veiculo = new LinkedList<Veiculo>();
 	
-	public Pessoa getPessoa() {
+	public LinkedList<Pessoa> getPessoa() {
 		return pessoa;
 	}
-	public Veiculo getVeiculo() {
+	public void setPessoa(LinkedList<Pessoa> pessoa) {
+		this.pessoa = pessoa;
+	}
+	public LinkedList<Veiculo> getVeiculo() {
 		return veiculo;
 	}
+	public void setVeiculo(LinkedList<Veiculo> veiculo) {
+		this.veiculo = veiculo;
+	}
+	
+
 }

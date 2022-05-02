@@ -1,6 +1,6 @@
 package gerenciadores;
 
-public class Reduzida extends GerenciadorDeReservas{
+public class Reduzida extends Reserva{
 	private double valorTotal;
 
 	public double getValorTotal() {
