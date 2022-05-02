@@ -1,9 +1,11 @@
 import javax.swing.JOptionPane;
 
 import gerenciadores.*;
+import pessoas.PessoaFisica;
+
 import java.text.ParseException;
 
-public class menu {
+public class menu extends Gerenciador{
 
 	public static void main(String args[]) throws ParseException {
 		
@@ -31,9 +33,11 @@ public class menu {
 						strOpcao = JOptionPane.showInputDialog ("Menu Gerência de Locatários: 	\n"
 							                                  + "1 - Cadastrar Locatário     	\n"
 							                                  + "2 - Buscar Locatário        	\n"
+							                                  + "3 - Edita Locatário			\n"
+							                                  + "4 - Exclui Locatário			\n"
 							                                  + "Selecione uma opção:");
 						opcao = Integer.parseInt (strOpcao);
-						if (opcao < 1 || opcao > 2) {
+						if (opcao < 1 || opcao > 4) {
 							JOptionPane.showMessageDialog (null, "Opção inv�lida!");
 						}else {
 							switch (opcao) {
@@ -60,6 +64,27 @@ public class menu {
 										e.printStackTrace();
 										JOptionPane.showMessageDialog (null, "Objeto não encontrado		\n");
 									}
+									break;
+								case 3:
+									do {
+										strOpcao = JOptionPane.showInputDialog(gerenciadorDeLocatarios.listaLocatarios()
+												+ "Selecione um dos locatarios para editar: \n");
+										opcao = Integer.parseInt(strOpcao);
+									}while (opcao < 0 || opcao > pessoa.size()-1);
+									if(pessoa.get(opcao) instanceof PessoaFisica) 
+										gerenciadorDeLocatarios.editaLocatarioPF(opcao);
+									else 
+										gerenciadorDeLocatarios.editaLocatarioPJ(opcao);
+									opcao++;
+									break;
+								case 4:
+									do {
+										strOpcao = JOptionPane.showInputDialog(gerenciadorDeLocatarios.listaLocatarios()
+												 + "Selecione um dos locatarios para excluir: \n");
+										opcao = Integer.parseInt(strOpcao);
+									}while(opcao < 0 || opcao > pessoa.size()-1);
+									gerenciadorDeLocatarios.excluiLocatario(opcao);							
+									opcao++;
 									break;
 							}
 						}
@@ -93,16 +118,33 @@ public class menu {
 									} else {
 										switch (opcao) {
 											case 1:
-												JOptionPane.showMessageDialog (null, "Você vai agora pesquisar veículo pelo Renavam");
-											break;	
+												try {
+													if(gerenciadorDeFrota.buscaVeiculo() == false) {
+														throw new Exception();
+													}
+												}catch(Exception e) {
+													e.printStackTrace();
+													JOptionPane.showMessageDialog (null, "Objeto não encontrado		\n");
+												}											break;	
 											
 											case 2:
-												JOptionPane.showMessageDialog (null, "Você vai agora atualizar dados de um veículo");
-											break;
+												do {
+													strOpcao = JOptionPane.showInputDialog(gerenciadorDeFrota.listaVeiculos()
+															 + "Selecione um dos veículos para editar: \n");
+													opcao = Integer.parseInt(strOpcao);
+												}while(opcao < 0 || opcao > veiculo.size()-1);
+												gerenciadorDeFrota.editaVeiculo(opcao);							
+												opcao++;											break;
 											
 											case 3:
-												JOptionPane.showMessageDialog (null, "Você vai agora remover veículo da frota");
-											break;
+												do {
+													strOpcao = JOptionPane.showInputDialog(gerenciadorDeFrota.listaVeiculos()
+															 + "Selecione um dos veículos para excluir: \n");
+													opcao = Integer.parseInt(strOpcao);
+												}while(opcao < 0 || opcao > veiculo.size()-1);
+												gerenciadorDeFrota.excluiVeiculo(opcao);							
+												opcao++;											
+												break;
 										}
 									}
 								break;

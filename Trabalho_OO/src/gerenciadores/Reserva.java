@@ -5,7 +5,7 @@ import java.util.Date;
 import pessoas.Pessoa;
 import veiculos.Veiculo;
 
-public class Reserva {
+public class Reserva extends Gerenciador{
 	private int numReserva, diarias;
 	private Pessoa cliente;
 	private Veiculo automovel;

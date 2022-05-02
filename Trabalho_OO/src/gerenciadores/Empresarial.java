@@ -6,4 +6,8 @@ public class Empresarial extends Reserva{
 	public double getValorTotal() {
 		return valorTotal;
 	}
+
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
 }

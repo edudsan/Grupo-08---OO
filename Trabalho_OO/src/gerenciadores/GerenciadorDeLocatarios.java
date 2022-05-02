@@ -7,8 +7,8 @@ import pessoas.PessoaJuridica;
 
 public class GerenciadorDeLocatarios extends Gerenciador{
 	
-	private String strOpcao, strSimNao, busca;
-	private int opcao, i, simNao;
+	private String strOpcao, busca;
+	private int opcao, i;
 	
 	public boolean cadastraLocatarioPF() {
 		PessoaFisica locatarioPF = new PessoaFisica();
@@ -101,36 +101,12 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 				busca = JOptionPane.showInputDialog("Nome do locatário que deseja buscar: \n");
 				for(i = 0;i < pessoa.size(); i++) {
 					if(pessoa.get(i).getNome().equals(busca) == true) {
-						JOptionPane.showMessageDialog(null, "Locatário encontrado!								   \n"
-														  + "Nome: " 	+ pessoa.get(i).getNome() 		+ "\n"
-														  + "Email: " 	+ pessoa.get(i).getEMail() 		+ "\n"
-														  + "CPF: " 	+ ((PessoaFisica) pessoa.get(i)).getCpf() 			+ "\n"
-														  + "Telefone: "+ pessoa.get(i).getTelefone() 	+ "\n");
-						strSimNao = JOptionPane.showInputDialog("Você deseja alterar este Locatário? 	\n"
-															  + "1 - Editar								\n"
-															  + "2 - Excluir							\n"
-															  + "3 - Voltar ao menu inicial				\n");
-						simNao = Integer.parseInt(strSimNao);
-						if(simNao == 1) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Editar este Locatário? \n",
-																		 "Edita Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								editaLocatarioPF(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else if(simNao == 2) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Excluir este Locatário? \n",
-									 "Exclui Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								excluiLocatarioPF(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else
-							return true;
+						JOptionPane.showMessageDialog(null, "Locatário encontrado!								       \n"
+														  + "Nome: " 	+ pessoa.get(i).getNome() 					+ "\n"
+														  + "Email: " 	+ pessoa.get(i).getEMail() 					+ "\n"
+														  + "CPF: " 	+ ((PessoaFisica) pessoa.get(i)).getCpf()   + "\n"
+														  + "Telefone: "+ pessoa.get(i).getTelefone() 				+ "\n");
+						return true;
 					}
 				}
 				break;
@@ -138,36 +114,12 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 				busca = JOptionPane.showInputDialog("Email do locatário que deseja buscar: \n");
 				for(i = 0;i < pessoa.size(); i++) {
 					if(pessoa.get(i).getEMail().equals(busca) == true) {
-						JOptionPane.showMessageDialog(null, "Locatário encontrado!								   \n"
-														  + "Nome: " 	+ pessoa.get(i).getNome() 		+ "\n"
-														  + "Email: " 	+ pessoa.get(i).getEMail() 		+ "\n"
-														  + "CPF: " 	+ ((PessoaFisica) pessoa.get(i)).getCpf() 			+ "\n"
-														  + "Telefone: "+ pessoa.get(i).getTelefone() 	+ "\n");
-						strSimNao = JOptionPane.showInputDialog("Você deseja alterar este Locatário? 	\n"
-															  + "1 - Editar								\n"
-															  + "2 - Excluir							\n"
-															  + "3 - Voltar ao menu inicial				\n");
-						simNao = Integer.parseInt(strSimNao);
-						if(simNao == 1) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Editar este Locatário? \n",
-									 "Edita Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								editaLocatarioPF(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else if(simNao == 2) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Excluir este Locatário? \n",
-									 "Exclui Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								excluiLocatarioPF(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else
-							return true;
+						JOptionPane.showMessageDialog(null, "Locatário encontrado!								  	   \n"
+														  + "Nome: " 	+ pessoa.get(i).getNome() 					+ "\n"
+														  + "Email: " 	+ pessoa.get(i).getEMail() 					+ "\n"
+														  + "CPF: " 	+ ((PessoaFisica) pessoa.get(i)).getCpf() 	+ "\n"
+														  + "Telefone: "+ pessoa.get(i).getTelefone() 				+ "\n");
+						return true;
 					}
 				}
 				break;
@@ -175,36 +127,12 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 				busca = JOptionPane.showInputDialog("CPF do locatário que deseja buscar: \n");
 				for(i = 0;i < pessoa.size(); i++) {
 					if(((PessoaFisica) pessoa.get(i)).getCpf().equals(busca) == true) {
-						JOptionPane.showMessageDialog(null, "Locatário encontrado!								   \n"
-														  + "Nome: " 	+ pessoa.get(i).getNome() 		+ "\n"
-														  + "Email: " 	+ pessoa.get(i).getEMail() 		+ "\n"
-														  + "CPF: " 	+ ((PessoaFisica) pessoa.get(i)).getCpf() 			+ "\n"
-														  + "Telefone: "+ pessoa.get(i).getTelefone() 	+ "\n");
-						strSimNao = JOptionPane.showInputDialog("Você deseja alterar este Locatário? 	\n"
-															  + "1 - Editar								\n"
-															  + "2 - Excluir							\n"
-															  + "3 - Voltar ao menu inicial				\n");
-						simNao = Integer.parseInt(strSimNao);
-						if(simNao == 1) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Editar este Locatário? \n",
-									 "Edita Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								editaLocatarioPF(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else if(simNao == 2) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Excluir este Locatário? \n",
-									 "Exclui Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								excluiLocatarioPF(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else
-							return true;
+						JOptionPane.showMessageDialog(null, "Locatário encontrado!								       \n"
+														  + "Nome: " 	+ pessoa.get(i).getNome() 					+ "\n"
+														  + "Email: " 	+ pessoa.get(i).getEMail() 					+ "\n"
+														  + "CPF: " 	+ ((PessoaFisica) pessoa.get(i)).getCpf() 	+ "\n"
+														  + "Telefone: "+ pessoa.get(i).getTelefone() 				+ "\n");
+						return true;
 					}
 				}
 				break;
@@ -222,36 +150,12 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 				busca = JOptionPane.showInputDialog("Nome do locatário que deseja buscar: \n");
 				for(i = 0;i < pessoa.size(); i++) {
 					if(pessoa.get(i).getNome().equals(busca) == true) {
-						JOptionPane.showMessageDialog(null, "Locatário encontrado!								   \n"
-														  + "Nome: " 	+ pessoa.get(i).getNome()			+ "\n"
-														  + "Email: " 	+ pessoa.get(i).getEMail()		+ "\n"
-														  + "CNPJ: " 	+ ((PessoaJuridica) pessoa.get(i)).getCnpj() 		+ "\n"
-														  + "Telefone: "+ pessoa.get(i).getTelefone() 	+ "\n");
-						strSimNao = JOptionPane.showInputDialog("Você deseja alterar este Locatário? 	\n"
-															  + "1 - Editar								\n"
-															  + "2 - Excluir							\n"
-															  + "3 - Voltar ao menu inicial				\n");
-						simNao = Integer.parseInt(strSimNao);
-						if(simNao == 1) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Editar este Locatário? \n",
-									 "Edita Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								editaLocatarioPJ(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else if(simNao == 2) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Excluir este Locatário? \n",
-									 "Exclui Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								excluiLocatarioPJ(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else
-							return true;
+						JOptionPane.showMessageDialog(null, "Locatário encontrado!								       \n"
+														  + "Nome: " 	+ pessoa.get(i).getNome()					+ "\n"
+														  + "Email: " 	+ pessoa.get(i).getEMail()					+ "\n"
+														  + "CNPJ: " 	+ ((PessoaJuridica) pessoa.get(i)).getCnpj()+ "\n"
+														  + "Telefone: "+ pessoa.get(i).getTelefone() 				+ "\n");
+						return true;
 					}
 				}
 				break;
@@ -259,36 +163,12 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 				busca = JOptionPane.showInputDialog("Email do locatário que deseja buscar: \n");
 				for(i = 0;i < pessoa.size(); i++) {
 					if(pessoa.get(i).getEMail().equals(busca) == true) {
-						JOptionPane.showMessageDialog(null, "Locatário encontrado!								   \n"
-														  + "Nome: " 	+ pessoa.get(i).getNome()			+ "\n"
-														  + "Email: " 	+ pessoa.get(i).getEMail() 		+ "\n"
-														  + "CNPJ: " 	+ ((PessoaJuridica) pessoa.get(i)).getCnpj() 		+ "\n"
-														  + "Telefone: "+ pessoa.get(i).getTelefone() 	+ "\n");
-						strSimNao = JOptionPane.showInputDialog("Você deseja alterar este Locatário? 	\n"
-															  + "1 - Editar								\n"
-															  + "2 - Excluir							\n"
-															  + "3 - Voltar ao menu inicial				\n");
-						simNao = Integer.parseInt(strSimNao);
-						if(simNao == 1) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Editar este Locatário? \n",
-									 "Edita Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == 0) {
-								editaLocatarioPJ(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else if(simNao == 2) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Excluir este Locatário? \n",
-									 "Exclui Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								excluiLocatarioPJ(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else
-							return true;
+						JOptionPane.showMessageDialog(null, "Locatário encontrado!								   	   \n"
+														  + "Nome: " 	+ pessoa.get(i).getNome()					+ "\n"
+														  + "Email: " 	+ pessoa.get(i).getEMail() 					+ "\n"
+														  + "CNPJ: " 	+ ((PessoaJuridica) pessoa.get(i)).getCnpj()+ "\n"
+														  + "Telefone: "+ pessoa.get(i).getTelefone() 				+ "\n");
+						return true;
 					}
 				}
 				break;
@@ -296,36 +176,12 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 				busca = JOptionPane.showInputDialog("CNPJ do locatário que deseja buscar: \n");
 				for(i = 0;i < pessoa.size(); i++) {
 					if(((PessoaJuridica) pessoa.get(i)).getCnpj().equals(busca) == true) {
-						JOptionPane.showMessageDialog(null, "Locatário encontrado!								   \n"
-														  + "Nome: " 	+ pessoa.get(i).getNome()			+ "\n"
-														  + "Email: " 	+ pessoa.get(i).getEMail() 		+ "\n"
-														  + "CNPJ: " 	+ ((PessoaJuridica) pessoa.get(i)).getCnpj() 		+ "\n"
-														  + "Telefone: "+ pessoa.get(i).getTelefone() 	+ "\n");
-						strSimNao = JOptionPane.showInputDialog("Você deseja alterar este Locatário? 	\n"
-															  + "1 - Editar								\n"
-															  + "2 - Excluir							\n"
-															  + "3 - Voltar ao menu inicial				\n");
-						simNao = Integer.parseInt(strSimNao);
-						if(simNao == 1) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Editar este Locatário? \n",
-									 "Edita Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == 0) {
-								editaLocatarioPJ(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else if(simNao == 2) {
-							simNao = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja Excluir este Locatário? \n",
-									 "Exclui Locatario" ,JOptionPane.YES_NO_OPTION);
-							if(simNao == JOptionPane.YES_OPTION) {
-								excluiLocatarioPJ(i);
-								return true;
-							}else {
-								return true;
-							}
-						}else
-							return true;
+						JOptionPane.showMessageDialog(null, "Locatário encontrado!								   	   \n"
+														  + "Nome: " 	+ pessoa.get(i).getNome()					+ "\n"
+														  + "Email: " 	+ pessoa.get(i).getEMail() 					+ "\n"
+														  + "CNPJ: " 	+ ((PessoaJuridica) pessoa.get(i)).getCnpj()+ "\n"
+														  + "Telefone: "+ pessoa.get(i).getTelefone() 				+ "\n");
+						return true;
 					}
 				}
 				break;
@@ -395,13 +251,28 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 		return true;
 	}
 	
-	public void excluiLocatarioPF(int i) {
+	public void excluiLocatario(int i) {
 		pessoa.remove(i);
 		JOptionPane.showMessageDialog(null, "Locatário deletado com sucesso! \n");
 	}
 	
-	public void excluiLocatarioPJ(int i) {
-		pessoa.remove(this.i);
-		JOptionPane.showMessageDialog(null, "Locatário deletado com sucesso! \n");
+	public String listaLocatarios() {
+		int i;
+		String lista = "";
+		for(i = 0;i < pessoa.size(); i++) {
+			if(pessoa.get(i) instanceof PessoaFisica) {
+				lista =	lista + "Índice: " 	  + i 					     				+ "\n"
+							  + "Nome: " 	  + pessoa.get(i).getNome()  				+ "\n"
+							  + "CPF: "  	  + ((PessoaFisica) pessoa.get(i)).getCpf() + "\n"
+							  + "──────────────────────────────────────────────────────────\n";
+			}else {
+				lista =	lista + "Índice: " 	  + i 					     					+ "\n"
+							  + "Nome: " 	  + pessoa.get(i).getNome()  					+ "\n"
+							  + "CNPJ: "  	  + ((PessoaJuridica) pessoa.get(i)).getCnpj() 	+ "\n"
+							  + "──────────────────────────────────────────────────────────────\n";
+			}
+			
+		}
+		return lista;
 	}
 }

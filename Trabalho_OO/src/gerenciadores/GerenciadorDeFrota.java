@@ -15,7 +15,7 @@ public class GerenciadorDeFrota extends Gerenciador{
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 	private Date data;
 	private String strOpcao, strDate;
-	private int opcao, simNao; 
+	private int opcao, simNao, i; 
 	private boolean verdadeiroFalso;
 	
 	public boolean cadastraVeiculo() throws ParseException {
@@ -222,14 +222,246 @@ public class GerenciadorDeFrota extends Gerenciador{
 	}
 	
 	public boolean buscaVeiculo() {
-		
+		String busca = JOptionPane.showInputDialog("Informe o valor do RENAVAM que deseja buscar:	\n");
+		for(i = 0;i < veiculo.size(); i++) {
+			if(veiculo.get(i).getRenavam().equals(busca) == true){
+				JOptionPane.showMessageDialog(null, "Veículo encontrado!		   \n"
+						  + "Marca: " 	+ veiculo.get(i).getMarca() 	        + "\n"
+						  + "Modelo: " 	+ veiculo.get(i).getModelo() 			+ "\n"
+						  + "RENAVAM: " + veiculo.get(i).getRenavam()   		+ "\n");
+				return true;
+			}
+		}
 		return false;
 	}
-	public boolean editaVeiculo() {
+	public boolean editaVeiculo(int i) throws ParseException {
+		if(veiculo.get(i) instanceof Passeio) {
+			Passeio passeioEditada = new Passeio(); 
+			try {
+				passeioEditada.setMarca	(JOptionPane.showInputDialog ("Marca:"));
+				passeioEditada.setModelo	(JOptionPane.showInputDialog ("Modelo:"));
+				passeioEditada.setRenavam	(JOptionPane.showInputDialog ("Renavam:"));
+				if(		passeioEditada.getMarca().trim().isEmpty() == true 
+					 || passeioEditada.getModelo().trim().isEmpty() == true
+					 || passeioEditada.getRenavam().trim().isEmpty() == true ) 
+				{
+					throw new Exception();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog (null, "Preencha todos os campos obrigatórios!		\n"
+					       						   + "Campos Obrigarótios: Marca, Modelo e RENAVAM	\n");
+				return false;
+			}
+			strDate = JOptionPane.showInputDialog ("Ano de Fabricação:");
+			data = dateFormat.parse(strDate);
+			passeioEditada.setAnoDeFabricacao(data);
+			strDate = JOptionPane.showInputDialog ("Ano do Modelo:");
+			data = dateFormat.parse(strDate);
+			passeioEditada.setAnoDeModelo(data);
+			
+			simNao = JOptionPane.showConfirmDialog(null, "Possui Ar Condicionado?", "", JOptionPane.YES_NO_OPTION);
+			if(simNao == JOptionPane.YES_OPTION)
+				verdadeiroFalso = true;
+			else
+				verdadeiroFalso = false;
+			passeioEditada.setArCondicionado(verdadeiroFalso);
+			simNao = JOptionPane.showConfirmDialog(null, "Possui Câmbio Automático?", "", JOptionPane.YES_NO_OPTION);
+			if(simNao == JOptionPane.YES_OPTION)
+				verdadeiroFalso = true;
+			else
+				verdadeiroFalso = false;
+			passeioEditada.setCambioAutomatico(verdadeiroFalso);
+			simNao = JOptionPane.showConfirmDialog(null, "Possui Direção Hidráulica?", "", JOptionPane.YES_NO_OPTION);
+			if(simNao == JOptionPane.YES_OPTION)
+				verdadeiroFalso = true;
+			else
+				verdadeiroFalso = false;
+			passeioEditada.setDirecaoHidraulica(verdadeiroFalso);
+			
+			passeioEditada.setCapacidadeTanque	(Double.parseDouble(JOptionPane.showInputDialog	("Capacidade do Tanque:")));
+			passeioEditada.setDiariaPF			(Double.parseDouble(JOptionPane.showInputDialog ("Diária Pessoa Física:")));
+			passeioEditada.setDiariaPJ			(Double.parseDouble(JOptionPane.showInputDialog ("Diária Pessoa Jurídica:")));
+			passeioEditada.setDiariaReduzidaPF	(passeioEditada.getDiariaPF()*0.9);
+			passeioEditada.setValorMensal		(Double.parseDouble(JOptionPane.showInputDialog ("Valor Mensal:")));
+			
+			veiculo.set(i, passeioEditada);
+			JOptionPane.showMessageDialog (null, "Cadastro realizado com sucesso!\n");
+			return true;
+			
+		}else if(veiculo.get(i) instanceof Carga) {
+			Carga cargaEditada = new Carga(); 
+			try {
+				cargaEditada.setMarca	(JOptionPane.showInputDialog ("Marca:"));
+				cargaEditada.setModelo	(JOptionPane.showInputDialog ("Modelo:"));
+				cargaEditada.setRenavam	(JOptionPane.showInputDialog ("Renavam:"));
+				if		(cargaEditada.getMarca().trim().isEmpty() == true 
+					  || cargaEditada.getModelo().trim().isEmpty() == true
+					  || cargaEditada.getRenavam().trim().isEmpty() == true ) 
+				{
+					throw new Exception();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog (null, "Preencha todos os campos obrigatórios!		\n"
+						   						   + "Campos Obrigarótios: Marca, Modelo e RENAVAM	\n");
+				return false;
+			}
+			strDate = JOptionPane.showInputDialog ("Ano de Fabricação:");
+			data = dateFormat.parse(strDate);
+			cargaEditada.setAnoDeFabricacao(data);
+			strDate = JOptionPane.showInputDialog ("Ano do Modelo:");
+			data = dateFormat.parse(strDate);
+			cargaEditada.setAnoDeModelo(data);
+			cargaEditada.setCapacidadeTanque		(Double.parseDouble(JOptionPane.showInputDialog	("Capacidade do Tanque:")));
+			cargaEditada.setCargaMaxima				(Double.parseDouble(JOptionPane.showInputDialog	("Carga Máxima:")));
+			cargaEditada.setTara					(Double.parseDouble(JOptionPane.showInputDialog	("Tara:")));
+			cargaEditada.setVolCompartimentoCarga	(Double.parseDouble(JOptionPane.showInputDialog	("Volume Compartimento de carga:")));
+			cargaEditada.setDiariaPF				(Double.parseDouble(JOptionPane.showInputDialog ("Diária Pessoa Física:")));
+			cargaEditada.setDiariaPJ				(Double.parseDouble(JOptionPane.showInputDialog ("Diária Pessoa Jurídica:")));
+			cargaEditada.setDiariaReduzidaPF		(cargaEditada.getDiariaPF()*0.9);
+			cargaEditada.setValorMensal				(Double.parseDouble(JOptionPane.showInputDialog ("Valor Mensal:")));
+			
+			veiculo.set(i, cargaEditada);
+			JOptionPane.showMessageDialog (null, "Cadastro realizado com sucesso!\n");
+			return true;
+		}
+		
+		else if(veiculo.get(i) instanceof Passageiro) {
+			Passageiro passageiroEditada = new Passageiro(); 
+			dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+			
+			try {
+				passageiroEditada.setMarca		(JOptionPane.showInputDialog ("Marca:"));
+				passageiroEditada.setModelo		(JOptionPane.showInputDialog ("Modelo:"));
+				passageiroEditada.setRenavam	(JOptionPane.showInputDialog ("Renavam:"));
+				if		(passageiroEditada.getMarca().trim().isEmpty() == true 
+					  || passageiroEditada.getModelo().trim().isEmpty() == true
+					  || passageiroEditada.getRenavam().trim().isEmpty() == true ) 
+				{
+					throw new Exception();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog (null, "Preencha todos os campos obrigatórios!		\n"
+   						   						   + "Campos Obrigarótios: Marca, Modelo e RENAVAM	\n");
+				return false;
+			}
+			strDate = JOptionPane.showInputDialog ("Ano de Fabricação:");
+			data = dateFormat.parse(strDate);
+			passageiroEditada.setAnoDeFabricacao(data);
+			strDate = JOptionPane.showInputDialog ("Ano do Modelo:");
+			data = dateFormat.parse(strDate);
+			passageiroEditada.setAnoDeModelo(data);
+
+			simNao = JOptionPane.showConfirmDialog(null, "Possui Ar Condicionado?", "", JOptionPane.YES_NO_OPTION);
+			if(simNao == JOptionPane.YES_OPTION)
+				verdadeiroFalso = true;
+			else
+				verdadeiroFalso = false;
+			passageiroEditada.setArCondicionado(verdadeiroFalso);
+			simNao = JOptionPane.showConfirmDialog(null, "Possui Câmbio Automático?", "", JOptionPane.YES_NO_OPTION);
+			if(simNao == JOptionPane.YES_OPTION)
+				verdadeiroFalso = true;
+			else
+				verdadeiroFalso = false;
+			passageiroEditada.setTvBordo(verdadeiroFalso);
+			simNao = JOptionPane.showConfirmDialog(null, "Possui Direção Hidráulica?", "", JOptionPane.YES_NO_OPTION);
+			if(simNao == JOptionPane.YES_OPTION)
+				verdadeiroFalso = true;
+			else
+				verdadeiroFalso = false;
+			passageiroEditada.setDirecaoHidraulica(verdadeiroFalso);
+			
+			passageiroEditada.setCapacidadeTanque	(Double.parseDouble(JOptionPane.showInputDialog("Capacidade do Tanque:")));
+			passageiroEditada.setDiariaPF			(Double.parseDouble(JOptionPane.showInputDialog ("Diária Pessoa Física:")));
+			passageiroEditada.setDiariaPJ			(Double.parseDouble(JOptionPane.showInputDialog ("Diária Pessoa Jurídica:")));
+			passageiroEditada.setDiariaReduzidaPF	(passageiroEditada.getDiariaPF()*0.9);
+			passageiroEditada.setValorMensal		(Double.parseDouble(JOptionPane.showInputDialog ("Valor Mensal:")));
+			passageiroEditada.setNumOcupantes		(Integer.parseInt(JOptionPane.showInputDialog ("Número de Ocupantes:")));
+			
+			veiculo.set(i, passageiroEditada);
+			JOptionPane.showMessageDialog (null, "Informações do veiculo atualizadas!\n");
+			return true;
+			
+		}else if(veiculo.get(i) instanceof Motocicleta) {
+			Motocicleta motocicletaEditada = new Motocicleta(); 
+			dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+			try {
+				motocicletaEditada.setMarca		(JOptionPane.showInputDialog ("Marca:"));
+				motocicletaEditada.setModelo	(JOptionPane.showInputDialog ("Modelo:"));
+				motocicletaEditada.setRenavam	(JOptionPane.showInputDialog ("Renavam:"));
+				if		(motocicletaEditada.getMarca().trim().isEmpty() == true 
+					  || motocicletaEditada.getModelo().trim().isEmpty() == true
+					  || motocicletaEditada.getRenavam().trim().isEmpty() == true ) 
+				{
+					throw new Exception();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog (null, "Preencha todos os campos obrigatórios!		\n"
+   						   						   + "Campos Obrigarótios: Marca, Modelo e RENAVAM	\n");
+				return false;
+			}
+			strDate = JOptionPane.showInputDialog ("Ano de Fabricação:");
+			data = dateFormat.parse(strDate);
+			motocicletaEditada.setAnoDeFabricacao(data);
+			strDate = JOptionPane.showInputDialog ("Ano do Modelo:");
+			data = dateFormat.parse(strDate);
+			motocicletaEditada.setAnoDeModelo(data);
+			motocicletaEditada.setCapacidadeTanque	(Double.parseDouble(JOptionPane.showInputDialog("Capacidade do Tanque:")));
+			motocicletaEditada.setDiariaPF			(Double.parseDouble(JOptionPane.showInputDialog ("Diária Pessoa Física:")));
+			motocicletaEditada.setDiariaPJ			(Double.parseDouble(JOptionPane.showInputDialog ("Diária Pessoa Jurídica:")));
+			motocicletaEditada.setDiariaReduzidaPF	(motocicletaEditada.getDiariaPF()*0.9);
+			motocicletaEditada.setValorMensal		(Double.parseDouble(JOptionPane.showInputDialog ("Valor Mensal:")));
+				
+			veiculo.set(i, motocicletaEditada);
+			JOptionPane.showMessageDialog (null, "Informações do veiculo atualizadas!\n");
+			return true;
+		}
 		return false;
 		
 	}
-	public boolean excluiVeiculo() {
-		return false;
+	public void excluiVeiculo(int i) {
+		veiculo.remove(i);
+		JOptionPane.showMessageDialog(null, "Veiculo deletado com sucesso! \n");
+	}
+
+	public String listaVeiculos() {
+		int i;
+		String lista = "";
+		for(i = 0;i < veiculo.size(); i++) {
+			if(veiculo.get(i) instanceof Passeio) {
+				lista =	lista + "Índice: " 	  + i 					     				+ "\n"
+							  + "Marca: " 	  + veiculo.get(i).getMarca()  				+ "\n"
+							  + "Modelo: "    + veiculo.get(i).getModelo() 				+ "\n"
+							  + "RENAVAM: "   + veiculo.get(i).getRenavam()				+ "\n"
+							  + "Tipo: Carro de Passeio									   \n"
+							  + "──────────────────────────────────────────────────────────\n";
+			}else if(veiculo.get(i) instanceof Passageiro){
+				lista =	lista + "Índice: " 	  + i 					     				+ "\n"
+							  + "Marca: " 	  + veiculo.get(i).getMarca()  				+ "\n"
+							  + "Modelo: "    + veiculo.get(i).getModelo() 				+ "\n"
+							  + "RENAVAM: "   + veiculo.get(i).getRenavam()				+ "\n"
+							  + "Tipo: Carro de Passageiro								   \n"
+							  + "──────────────────────────────────────────────────────────\n";
+			}else if(veiculo.get(i) instanceof Carga){
+				lista =	lista + "Índice: " 	  + i 					     				+ "\n"
+							  + "Marca: " 	  + veiculo.get(i).getMarca()  				+ "\n"
+							  + "Modelo: "    + veiculo.get(i).getModelo() 				+ "\n"
+							  + "RENAVAM: "   + veiculo.get(i).getRenavam()				+ "\n"
+							  + "Tipo: Carro de Carga								   	   \n"
+							  + "──────────────────────────────────────────────────────────\n";
+			}else if(veiculo.get(i) instanceof Motocicleta){
+				lista =	lista + "Índice: " 	  + i 					     				+ "\n"
+							  + "Marca: " 	  + veiculo.get(i).getMarca()  				+ "\n"
+							  + "Modelo: "    + veiculo.get(i).getModelo() 				+ "\n"
+							  + "RENAVAM: "   + veiculo.get(i).getRenavam()				+ "\n"
+							  + "Tipo: Motocicleta										   \n"
+							  + "──────────────────────────────────────────────────────────\n";
+			}
+			
+		}
+		return lista;
 	}
 }
