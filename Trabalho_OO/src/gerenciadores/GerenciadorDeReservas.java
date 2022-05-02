@@ -30,7 +30,7 @@ public class GerenciadorDeReservas extends Gerenciador{
 			i = Integer.parseInt(str);
 		}while(i < 0 || i > pessoa.size());
 		str = pessoa.get(i).getNome();
-		reservaNormal.getCliente().setNome(JOptionPane.showInputDialog(str));
+		reservaNormal.getCliente().setNome(str);
 		//Define o número de diarias da reserva
 		str = JOptionPane.showInputDialog("Data do início da reserva: ");
 		data = dateFormat.parse(str);

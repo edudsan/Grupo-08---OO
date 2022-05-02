@@ -8,7 +8,7 @@ import pessoas.PessoaJuridica;
 public class GerenciadorDeLocatarios extends Gerenciador{
 	
 	private String strOpcao, busca;
-	private int opcao, i;
+	private int opcao, i, numFuncionarios;;
 	
 	public boolean cadastraLocatarioPF() {
 		PessoaFisica locatarioPF = new PessoaFisica();
@@ -43,6 +43,7 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 	
 	public boolean cadastraLocatarioPJ() {
 		PessoaJuridica locatarioPJ = new PessoaJuridica();
+		PessoaFisica funcionario = new PessoaFisica();
 		try {
 			locatarioPJ.setNome	(JOptionPane.showInputDialog ("Nome:"));
 			locatarioPJ.setEMail(JOptionPane.showInputDialog ("Email:"));
@@ -66,16 +67,38 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 		locatarioPJ.getEndereco().setRua	(JOptionPane.showInputDialog ("Rua:"));
 		locatarioPJ.getEndereco().setNumero	(JOptionPane.showInputDialog ("Numero:"));
 		
-//		do {
-//			String strNumFuncionarios = JOptionPane.showInputDialog("Quantos Funcionários você deseja cadastrar?");
-//			numFuncionarios = Integer.parseInt(strNumFuncionarios);
-//		}while(numFuncionarios < 0);
-//		for(int i = numFuncionarios;i > 0;i--) {
-//			locatarioPJ.getFuncionarios().set(i, );
-//		}
-		
-		//tentando achar uma forma de adicionar os funcionarios ao cadastro de pessoa jurídica
-		
+		String strNumFuncionarios = JOptionPane.showInputDialog("Quantos Funcionários você deseja cadastrar?");
+		numFuncionarios = Integer.parseInt(strNumFuncionarios);
+		for(int i = 0;i < numFuncionarios; i++) {
+			try {
+				funcionario.setNome	(JOptionPane.showInputDialog ("Nome Completo:"));
+				funcionario.setEMail	(JOptionPane.showInputDialog ("Email:"));
+				funcionario.setCpf		(JOptionPane.showInputDialog ("CPF:"));
+				if(funcionario.getNome().trim().isEmpty() == true 
+				|| funcionario.getEMail().trim().isEmpty() == true
+				|| funcionario.getCpf().trim().isEmpty() == true ) 
+				{
+					throw new Exception();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog (null, "Preencha todos os campos obrigatórios!\n"
+												   + "Campos Obrigarótios: Nome, Email e CPF");
+				i--;
+				continue;
+			}
+			funcionario.setTelefone					(JOptionPane.showInputDialog ("Telefone:"));
+			funcionario.setEstadoCivil				(JOptionPane.showInputDialog ("Estado Civil:"));
+			funcionario.getEndereco().setEstado		(JOptionPane.showInputDialog ("Estado:"));
+			funcionario.getEndereco().setCidade		(JOptionPane.showInputDialog ("Cidade:"));
+			funcionario.getEndereco().setBairro		(JOptionPane.showInputDialog ("Bairro:"));
+			funcionario.getEndereco().setRua		(JOptionPane.showInputDialog ("Rua:"));
+			funcionario.getEndereco().setNumero		(JOptionPane.showInputDialog ("Numero:"));
+			
+			locatarioPJ.getFuncionarios().add(funcionario);
+			JOptionPane.showMessageDialog (null, i+1 + "° funcionário cadastrado com sucesso!\n");
+			
+		}
 		pessoa.add(locatarioPJ);
 		JOptionPane.showMessageDialog (null, "Cadastro realizado com sucesso!\n");
 		return true;
@@ -266,9 +289,10 @@ public class GerenciadorDeLocatarios extends Gerenciador{
 							  + "CPF: "  	  + ((PessoaFisica) pessoa.get(i)).getCpf() + "\n"
 							  + "──────────────────────────────────────────────────────────\n";
 			}else {
-				lista =	lista + "Índice: " 	  + i 					     					+ "\n"
-							  + "Nome: " 	  + pessoa.get(i).getNome()  					+ "\n"
-							  + "CNPJ: "  	  + ((PessoaJuridica) pessoa.get(i)).getCnpj() 	+ "\n"
+				lista =	lista + "Índice: " 	 				 + i 					     								 + "\n"
+							  + "Nome: " 	  			     + pessoa.get(i).getNome()  								 + "\n"
+							  + "CNPJ: "  	 				 + ((PessoaJuridica) pessoa.get(i)).getCnpj() 				 + "\n"
+							  + "Número De Funcionários: " 	 + ((PessoaJuridica) pessoa.get(i)).getFuncionarios().size() + "\n"
 							  + "──────────────────────────────────────────────────────────────\n";
 			}
 			
