@@ -66,6 +66,11 @@ public class menu extends Gerenciador{
 									}
 									break;
 								case 3:
+									if(pessoa.size() == 0) {
+										JOptionPane.showMessageDialog(null, "Não há locatários cadastrados!!");
+										opcao++; 
+										break;
+									}
 									do {
 										strOpcao = JOptionPane.showInputDialog(gerenciadorDeLocatarios.listaLocatarios()
 												+ "Selecione um dos locatarios para editar: \n");
@@ -78,6 +83,11 @@ public class menu extends Gerenciador{
 									opcao++;
 									break;
 								case 4:
+									if(pessoa.size() == 0) {
+										JOptionPane.showMessageDialog(null, "Não há locatários cadastrados!!");
+										opcao++; 
+										break;
+									}
 									do {
 										strOpcao = JOptionPane.showInputDialog(gerenciadorDeLocatarios.listaLocatarios()
 												 + "Selecione um dos locatarios para excluir: \n");
@@ -125,18 +135,30 @@ public class menu extends Gerenciador{
 												}catch(Exception e) {
 													e.printStackTrace();
 													JOptionPane.showMessageDialog (null, "Objeto não encontrado		\n");
-												}											break;	
+												}											
+												break;	
 											
 											case 2:
+												if(veiculo.size() == 0) {
+													JOptionPane.showMessageDialog(null, "Não há veiculos cadastrados!!");
+													opcao++; 
+													break;
+												}
 												do {
 													strOpcao = JOptionPane.showInputDialog(gerenciadorDeFrota.listaVeiculos()
 															 + "Selecione um dos veículos para editar: \n");
 													opcao = Integer.parseInt(strOpcao);
 												}while(opcao < 0 || opcao > veiculo.size()-1);
 												gerenciadorDeFrota.editaVeiculo(opcao);							
-												opcao++;											break;
+												opcao++;											
+												break;
 											
 											case 3:
+												if(veiculo.size() == 0) {
+													JOptionPane.showMessageDialog(null, "Não há veiculos cadastrados!!");
+													opcao++; 
+													break;
+												}
 												do {
 													strOpcao = JOptionPane.showInputDialog(gerenciadorDeFrota.listaVeiculos()
 															 + "Selecione um dos veículos para excluir: \n");
@@ -159,20 +181,35 @@ public class menu extends Gerenciador{
 							break;
 						}
 						do {
-							strOpcao = JOptionPane.showInputDialog("Que tipo de reserva você deseja fazer: 	\n"
-															     + "1 - Normal								\n"
-															     + "2 - Empresarial							\n"
-															     + "3 - Mensal								\n");
+							strOpcao = JOptionPane.showInputDialog("Gerenciador De Reservas: 			\n"
+															     + "1 - Cadastra Reserva				\n"
+															     + "2 - Emite Relatorio					\n"
+															     + "3 - Relatorio Consolidado			\n");
 							opcao = Integer.parseInt(strOpcao);
 						}while(opcao < 1 || opcao > 3);
 						if(opcao == 1) {
-							gerenciadorDeReservas.reservaNormal();
+							do {
+								strOpcao = JOptionPane.showInputDialog("Que tipo de reserva você deseja fazer: 	\n"
+																     + "1 - Normal								\n"
+																     + "2 - Empresarial							\n"
+																     + "3 - Mensal								\n");
+								opcao = Integer.parseInt(strOpcao);
+							}while(opcao < 1 || opcao > 3);
+							if(opcao == 1) {
+								gerenciadorDeReservas.reservaNormal();
+								break;
+							}else if(opcao == 2) {
+								gerenciadorDeReservas.reservaEmpresarial();
+								break;
+							}else if(opcao == 3) {
+								gerenciadorDeReservas.reservaMensal();
+								break;
+							}
 						}else if(opcao == 2) {
-							gerenciadorDeReservas.reservaEmpresarial();
+							JOptionPane.showMessageDialog(null, gerenciadorDeReservas.emitirRelatorio());
 						}else if(opcao == 3) {
-							gerenciadorDeReservas.reservaMensal();
+							
 						}
-						
 						break;
 					
 					case 0:
